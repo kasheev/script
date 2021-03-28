@@ -1,7 +1,17 @@
 var sumTime = 0;
 var output = ""
+var a=0, b=1;
 var seconds, minutes,hours, days, mounths;
-count = document.querySelectorAll(".audio_row");
+var timer = setInterval(function(){
+    a = b;
+    window.scrollTo(0,document.body.scrollHeight);
+    count = document.querySelectorAll(".audio_row");
+    b = count.length;
+
+
+    if(a == b){
+        clearInterval(timer);
+
     for(i = 0; i < count.length; i++) {
         let str = new String;
         srt = count[i].getAttribute("data-audio");
@@ -9,10 +19,10 @@ count = document.querySelectorAll(".audio_row");
         var arg_2 = arg[0].split(':'); //второй раз рабиваем и получаем длину трека последним элементом
         var time = Number.parseInt(arg_2[arg_2.length - 1]); //достаем длину трека
         sumTime += time;
-}
+    }
 
 if(sumTime >= 60){
-    minutes = pasreInt(sumTime/60);
+    minutes = parseInt(sumTime/60);
     seconds = sumTime - minutes*60;
     if(minutes >= 60){
         hours = parseInt(minutes/60);
@@ -21,16 +31,19 @@ if(sumTime >= 60){
             days = parseInt(hours/24);
             hours = hours - days*24;
             if(days>=30){
-                mounths = pasreInt(days/30);
+                mounths = parseInt(days/30);
                 days = days - mounths*30;
             }
         }  
     }
 }
 
-output+="Общая продолжительность треков: "
-    if(mounths!=undefined) output+=mounths+" месяца, "; //Прокерки на наличие месяца, дня, часа
-    if(days!=undefined) output+=days+" дня, ";
-    if(hours!=undefined) output+=hours+" часа, ";
-    output+=minutes+" минут, "+seconds+" секунды.";
+output+="Всего: "
+    if(mounths!=undefined) output+=mounths+" м., "; //Прокерки на наличие месяца, дня, часа
+    if(days!=undefined) output+=days+" д., ";
+    if(hours!=undefined) output+=hours+" ч., ";
+    output+=minutes+" м., "+seconds+" сек.";
     console.log(output);
+    window.scrollTo(0, 0);
+    }
+     }, 1000)
