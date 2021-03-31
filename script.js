@@ -39,7 +39,7 @@ if(sumTime >= 60){
 }
 
 output+="Всего: "
-    if(mounths!=undefined) output+=mounths+" м., "; //Прокерки на наличие месяца, дня, часа
+    if(mounths!=undefined) output+=mounths+" м., "; //Проверка на наличие месяца, дня, часа
     if(days!=undefined) output+=days+" д., ";
     if(hours!=undefined) output+=hours+" ч., ";
     output+=minutes+" м., "+seconds+" сек.";
